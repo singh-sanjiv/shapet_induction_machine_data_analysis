@@ -1,0 +1,33 @@
+<%- include('baseEmail') %>
+<p>Hi <%= firstName %>,</p>
+<p>Welcome to Shapet - Induction Company, we're glad to have you 🎉🙏</p>
+<p>Check out all the features that you can access!</p>
+<table
+  class="btn btn-primary"
+  role="presentation"
+  border="0"
+  cellpadding="0"
+  cellspacing="0"
+>
+  <tbody>
+    <tr>
+      <td align="left">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td>
+                <a href="<%= url %>" target="_blank">Here</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  If you need any help with booking your next tour, please don't hesitate to
+  contact me!
+</p>
+<p>- Shivang, CEO</p>
+<%- include('endblock') %>

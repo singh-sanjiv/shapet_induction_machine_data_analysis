@@ -1,0 +1,5 @@
+<% if (user.role === "admin") { %>
+  <%- include('./admindashboard', { userData: user }); %>
+<% } else { %> 
+  <%- include('./clientdashboard', { userData: user }); %>
+<% } %>

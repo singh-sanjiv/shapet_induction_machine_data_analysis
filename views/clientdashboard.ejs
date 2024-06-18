@@ -1,0 +1,274 @@
+<%- include('./components/header'); %>
+        <!-- End Topbar -->
+        <!-- Start Breadcrumbbar -->
+        <div class="breadcrumbbar">
+          <div class="row align-items-center">
+            <div class="col-md-8 col-lg-8">
+              <!-- <h4 class="page-title">CRM</h4> -->
+              <div class="breadcrumb-list">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Dashboard
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Breadcrumbbar -->
+        <!-- Start Contentbar -->
+        <div class="contentbar">
+          <!-- Start row -->
+          <div class="row" id="temp-details">
+            <div class="col">
+              <div class="card m-b-30">
+                <div class="card-body">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col-8">
+                      <p class="font-15">Water Temp</p>
+                      <h4 class="card-title mb-0" id="rtd1">-</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span
+                        class="iconbar iconbar-md bg-primary text-white rounded"
+                        ><i class="fa fa-thermometer"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card m-b-30">
+                <div class="card-body">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col-8">
+                      <p class="font-15">IGBT Plate Temp</p>
+                      <h4 class="card-title mb-0" id="rtd2">-</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span
+                        class="iconbar iconbar-md bg-primary text-white rounded"
+                        ><i class="fa fa-thermometer"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card m-b-30">
+                <div class="card-body">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col-8">
+                      <p class="font-15">Coil temp</p>
+                      <h4 class="card-title mb-0" id="rtd3">-</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span
+                        class="iconbar iconbar-md bg-primary text-white rounded"
+                        ><i class="fa fa-thermometer"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card m-b-30">
+                <div class="card-body">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col-8">
+                      <p class="font-15">Main Furnace Temp</p>
+                      <h4 class="card-title mb-0" id="tc">-</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span
+                        class="iconbar iconbar-md bg-primary text-white rounded"
+                        ><i class="fa fa-thermometer"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card m-b-30">
+                <div class="card-body">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col-8">
+                      <p class="font-15">Metlor Current</p>
+                      <h4 class="card-title mb-0" id="curr1">-</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span
+                        class="iconbar iconbar-md bg-primary text-white rounded"
+                        ><i class="ion ion-md-flash"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card m-b-30">
+                <div class="card-body">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col-8">
+                      <p class="font-15">Compressor Current</p>
+                      <h4 class="card-title mb-0" id="curr2">-</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span
+                        class="iconbar iconbar-md bg-primary text-white rounded"
+                        ><i class="ion ion-md-flash"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card m-b-30">
+                <div class="card-body">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col-8">
+                      <p class="font-15">DC Voltage</p>
+                      <h4 class="card-title mb-0" id="dcv">-</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span
+                        class="iconbar iconbar-md bg-primary text-white rounded"
+                        ><i class="ion ion-md-power"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End row -->
+         
+                    <!-- Start col -->
+                     <div class="row">
+
+                       <div class="col-lg-12">
+                         <div class="card m-b-30">
+                           <div class="card-header">                                
+                             <div class="row ">
+                                  <div class="col-6 col-lg-9">
+                                    <h5 class="card-title mb-0">Machine <%= user.machines[user.selectMachine].machineName %></h5>
+                                  </div>
+                                  <div class="col-3 col-lg-2 offset-3 offset-lg-1">
+                                  
+                                    
+                                    <select id="graphType" class="form-control font-12">
+                                      <option value="line" selected>Line</option>
+                                      <option value="bar">Bar</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-body p-0">
+                                <canvas id="liveChart"></canvas>
+                          </div>
+                      </div>
+                    </div>
+                  <!-- End col -->       
+
+                </div>
+                    
+                  <!--
+                    
+                    <div>
+                      <label for="topics">Select Topics:</label>
+                      <select id="topics" multiple>
+                        <% if (userData && userData.machines && userData.machines.length > 0) { %>
+                          <% const selectMachineValue = userData.selectMachine; %>
+                          <% if (selectMachineValue >= 0 && selectMachineValue < userData.machines.length) { %>
+                            <% const topics = userData.machines[selectMachineValue].topics; %>
+                            <% topics.forEach(topic => { %>
+                              <option value="<%= topic %>"><%= topic %></option>
+                            <% }); %>
+                          <% } %>
+                        <% } %>
+                      </select>
+                    </div>                   -->
+
+                   
+           
+                  <!-- <select id="chartType" onchange="updateChartType()">
+                    <option value="line">Line Chart</option>
+                    <option value="bar">Bar Chart</option>
+                  </select> -->
+          
+
+
+            <script type="text/html" src="assets/js/graph.js"></script>
+            <!-- End Line Chart -->
+        
+          </div>
+        </div>
+        <!-- End Contentbar -->
+        <!-- Start Footerbar -->
+        <div class="footerbar">
+          <footer class="footer">
+            <p class="mb-0">© 2020 Shapet - All Rights Reserved.</p>
+          </footer>
+        </div>
+        <!-- End Footerbar -->
+      </div>
+      <!-- End Rightbar -->
+    </div>
+    <!-- End Containerbar -->
+    <!-- Start js -->
+    
+  <script src="/js/axios.min.js" type="module" ></script>
+  <script src="/js/userlogin.js" type="module"></script>
+  <script>
+    const userData = <%- JSON.stringify(user) %>;
+  </script>
+   <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js'
+
+    // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js'
+
+    // Add Firebase products that you want to use
+    import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js'
+    import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js'
+  </script>
+  <script src="/js/firebase.js"></script>
+  <script src="/js/selectedMachines.js" type="text/javascript"></script>
+  <script src="/js/graph.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- <script src="assets/js/socket.io.js" type="text/javascript"></scriptsrc> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js" type="application/javascript"></script>
+  </script>
+    <script src="assets/js/jquery.min.js"></script>    
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/detect.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/vertical-menu.js"></script>
+    <!-- Switchery js -->
+    <script src="assets/plugins/switchery/switchery.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <!-- Apex js -->
+    <!-- <script src="assets/plugins/apexcharts/apexcharts.min.js"></script> -->
+        <!-- Pnotify js -->
+    <script src="assets/plugins/pnotify/js/pnotify.custom.min.js"></script>
+    <script src="assets/js/custom/custom-pnotify.js"></script>>
+    <!-- Slick js -->
+    <script src="assets/plugins/slick/slick.min.js"></script>
+    <!-- Custom Dashboard js -->
+    <script src="assets/js/custom/custom-dashboard.js"></script>
+    <!-- Core js -->
+    <script src="assets/js/core.js"></script>
+    
+    <!-- Pnotify js -->
+    <script src="assets/plugins/pnotify/js/pnotify.custom.min.js"></script>
+    <script src="assets/js/custom/custom-pnotify.js"></script>>
+    <!-- End js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js"></script>
+    
+  </body>
+</html>
