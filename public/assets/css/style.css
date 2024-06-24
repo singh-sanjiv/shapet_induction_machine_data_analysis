@@ -44268,7 +44268,7 @@ table.focus-on tfoot tr.focused td {
   z-index: 9999;
 }
 .dropdown-item.selected {
-  background-color: #ee1825; 
+  background-color: #e1e1e1; 
 }
 
 .dropdown-item.selected .action-title {

@@ -91,6 +91,7 @@ app.use((req, res, next) => {
 // 3) ROUTES
 app.use("/", viewRouter);
 app.use("/api/v1/machine", machineRouter);
+app.use("/api/v1/users", userRouter);
 app.use("/api/v1/token", tokenRouter);
 app.use("/api/v1/machineData", machineDataRouter);
 

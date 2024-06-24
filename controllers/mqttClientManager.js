@@ -60,8 +60,20 @@ class MQTTClientManager {
         console.log(`Connected to MQTT broker for Machine: ${machine.machineName}`);
 
         // Always subscribe to certain topics
-        const alwaysSubscribeTopics = machine.topics.filter(topic => topic.includes("sensors/dcv"));
+        const alwaysSubscribeTopics = machine.topics.filter(topic => topic.includes("sensors/curr1"));
         alwaysSubscribeTopics.forEach((topic) => {
+         
+          const parts = topic.split('/');
+          const baseTopic = parts[0];
+          const sensor = parts[2];
+          client.publish(`${baseTopic}/sensors/SET`, `${sensor}/1}`, (err) => {
+            if (err) {
+              console.error(`Error publishing to topic ${baseTopic}/sensors/SET with message ${sensor}/${status}:`, err);
+            } else {
+              console.log(`Published to topic ${baseTopic}/sensors/SET with message ${sensor}/1`);
+            }
+          });
+
           client.subscribe(topic, (err) => {
             if (err) {
               console.error(`Error subscribing to topic ${topic}:`, err);
@@ -79,6 +91,10 @@ class MQTTClientManager {
             topic.includes("sensors/rtd3")
           );
           conditionalSubscribeTopics.forEach((topic) => {
+            
+            this.publishTopic(client, topic, 1);
+
+
             client.subscribe(topic, (err) => {
               if (err) {
                 console.error(`Error subscribing to topic ${topic}:`, err);
@@ -124,15 +140,18 @@ class MQTTClientManager {
 
       const unsubscribePromises = conditionalSubscribeTopics.map((topic) => {
         return new Promise((resolve, reject) => {
-          client.unsubscribe(topic, (err) => {
-            if (err) {
-              console.error(`Error unsubscribing from topic ${topic}:`, err);
-              reject(err);
-            } else {
-              console.log(`Unsubscribed from conditional topic: ${topic}`);
-              resolve();
-            }
-          });
+          
+          this.publishTopic(client, topic, 0);
+
+          // client.unsubscribe(topic, (err) => {
+          //   if (err) {
+          //     console.error(`Error unsubscribing from topic ${topic}:`, err);
+          //     reject(err);
+          //   } else {
+          //     console.log(`Unsubscribed from conditional topic: ${topic}`);
+          //     resolve();
+          //   }
+          // });
         });
       });
 
@@ -145,6 +164,26 @@ class MQTTClientManager {
       });
     }
   }
+
+  publishTopic(client, topic, status) {
+    const parts = topic.split('/');
+    const baseTopic = parts[0]; // e.g., "test0"
+    const sensor = parts[2]; // e.g., "rtd1"
+
+    // Check if the topic format is correct before publishing
+    if (baseTopic && sensor) {
+      client.publish(`${baseTopic}/sensors/SET`, `${sensor}/${status}`, (err) => {
+        if (err) {
+          console.error(`Error publishing to topic ${baseTopic}/sensors/SET with message ${sensor}/${status}:`, err);
+        } else {
+          console.log(`Published to topic ${baseTopic}/sensors/SET with message ${sensor}/${status}`);
+        }
+      });
+    } else {
+      console.error(`Invalid topic format: ${topic}`);
+    }
+  }
+
 
   startAcknowledgementTimer(machineId) {
     this.clearAcknowledgementTimer(machineId);
