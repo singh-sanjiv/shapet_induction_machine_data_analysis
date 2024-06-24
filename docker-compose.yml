@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: your-dockerhub-username/shapet:latest
+    image: username/shapet:latest
     container_name: shapet-app
     ports:
       - "3000:3000"
